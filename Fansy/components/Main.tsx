@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { Text, View } from "react-native";
 import { NavigationProp } from '@react-navigation/native';
 import AppButton from "./elements/EditButton";
 function Mainpage({ navigation }: { navigation: NavigationProp<any> }) {

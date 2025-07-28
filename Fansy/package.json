@@ -23,7 +23,9 @@
     "react-native-safe-area": "^0.5.1",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.13.1",
-    "react-native-tab-view": "^4.1.2"
+    "react-native-tab-view": "^4.1.2",
+    "react-native-vision-camera": "^4.7.1",
+    "react-native-worklets-core": "^1.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
