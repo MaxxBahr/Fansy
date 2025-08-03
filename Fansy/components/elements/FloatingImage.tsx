@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { Animated, Dimensions, Image, StyleSheet, View } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Dimensions, Image, StyleSheet } from 'react-native';
 
 const { height: screenHeight } = Dimensions.get('window');
 
@@ -25,7 +25,7 @@ const FloatingImage: React.FC<Props> = ({ imageSource, speed = 5000 }) => {
   }, []);
 
   return (
-    <Animated.View style={[styles.imageContainer, { transform: [{ translateY }] }]}>
+    <Animated.View style={{...styles.imageContainer,  transform: [{ translateY }] }}>
       <Image source={imageSource} style={styles.image} resizeMode="contain" />
     </Animated.View>
   );

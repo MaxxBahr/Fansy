@@ -1,9 +1,8 @@
 import { NavigationProp } from "@react-navigation/native";
 import React from "react";
-import { View, Text, Button } from "react-native";
-import AppButton from "./elements/EditButton";
+import { View } from "react-native";
 import Contact from "./elements/Contacts";
-import { readString } from "react-native-csv";
+import AppButton from "./elements/EditButton";
 
 function PrivateArea({ navigation }: { navigation: NavigationProp<any> }) {
     const [contact, SetContact] = React.useState<any[]>([]);
