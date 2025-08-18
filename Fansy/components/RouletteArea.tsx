@@ -8,7 +8,7 @@ function RouletteArea({ navigation }: { navigation: NavigationProp<any> }) {
     return(
         <View style={{flex: 1}}>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <FloatingImage imageSource={require('./elements/assets/image.jpg')} />
+                <FloatingImage />
             </View>
             <View style={{ position: 'relative', justifyContent: 'center', alignItems: 'center', elevation: 2, paddingBottom: 20}}>
                     <AppButton title="Edit NPC" onPress={() => navigation.navigate('EditNPC')} />

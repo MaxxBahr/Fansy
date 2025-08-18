@@ -26,6 +26,7 @@ also to .bashrc:
     export PATH=$PATH:$ANDROID_HOME/tools
     export PATH=$PATH:$ANDROID_HOME/tools/bin
     export PATH=$PATH:$ANDROID_HOME/platform-tools
+    export EXPO_ROUTER_APP_ROOT=./app
 ```
 5. Start Android Studio and choose the emulator phone:
 ![alt text](./images/image.png)
@@ -33,9 +34,5 @@ also to .bashrc:
 
 6. Start one Terminal with:
 ```shell
-    npx react-native start
-```
-7. Start the other Terminal with:
-```shell
-    npx react-native run-android
+    npx expo start
 ```
