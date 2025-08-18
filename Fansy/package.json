@@ -41,7 +41,9 @@
     "react-native-tab-view": "^4.1.2",
     "react-native-video": "^6.16.1",
     "react-native-web": "~0.20.0",
-    "react-native-webview": "13.13.5"
+    "react-native-webview": "13.13.5",
+    "expo-av": "~15.1.7",
+    "expo-video": "~2.2.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
