@@ -1,65 +1,57 @@
-import { useVideoPlayer, VideoView } from 'expo-video';
-import React, { useEffect, useState } from "react";
-import { StyleSheet } from "react-native";
-import { Gesture, GestureDetector, GestureHandlerRootView } from "react-native-gesture-handler";
+import { useVideoPlayer, VideoView } from "expo-video";
+import React, { useEffect, useMemo, useState } from "react";
+import { Button, StyleSheet, View } from "react-native";
 
-export default function App() {
+export default function FloatingImage() {
+  const videos = useMemo(
+    () => [
+      require("../../assets/video1.mp4"),
+      require("../../assets/video2.mp4"),
+    ],
+    []
+  );
+
   const [videoIndex, setVideoIndex] = useState(0);
-  const videos = [
-    require("./assets/video1.mp4"),
-    require("./assets/video2.mp4"),
-    require("./assets/video3.mp4"),
-  ];
 
-  // Create player with initial video
-  const player = useVideoPlayer(videos[0], (player) => {
-    player.loop = true;
-    player.play();
+  const changePerson = () => {
+    setVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  }
+
+  // 🟢 Player nur EINMAL erstellen
+  const player = useVideoPlayer(videos[0], (p) => {
+    p.loop = true;
+    p.play();
   });
 
-  const panGesture = Gesture.Pan()
-    .onUpdate((event) => {
-      if (event.translationY < -100) {
-        setVideoIndex((prev) => (prev + 1) % videos.length);
-      }
-    });
-
-  // Update player source when videoIndex changes
+  // 🟢 Quelle wechseln, wenn Index sich ändert
   useEffect(() => {
-      console.log('Video index changed to:', videoIndex);
-  console.log('Loading video:', videos[videoIndex]);
     player.replace(videos[videoIndex]);
     player.play();
-  }, [videoIndex, player]);
+  }, [videoIndex]);
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <GestureDetector gesture={panGesture}>
+      <View style={styles.contentContainer}>
         <VideoView
-          player={player}
           style={styles.video}
-          allowsFullscreen={false}
-          allowsPictureInPicture={false}
-          contentFit="cover"
+          player={player}
+          allowsFullscreen
+          pointerEvents="none"
         />
-      </GestureDetector>
-    </GestureHandlerRootView>
+        <Button onPress={changePerson} title={"Next Person"} />
+      </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  contentContainer: {
     flex: 1,
-    backgroundColor: "black",
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
   },
   video: {
-    width: "100%",
-    height: "100%",
-  },
-  text: { 
-    color: "white", 
-    fontSize: 24 
+    flex: 1,
+    width: "40%",
+    height: "50%",
+    aspectRatio: 21 / 9,
   },
 });
