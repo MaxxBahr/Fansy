@@ -1,15 +1,25 @@
-import { NavigationProp } from '@react-navigation/native';
+import { NavigationProp, useFocusEffect } from '@react-navigation/native';
 import { CameraType, CameraView, useCameraPermissions } from 'expo-camera';
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Button, Text, View } from "react-native";
 import AppButton from "./elements/EditButton";
 
 function Mainpage({ navigation }: { navigation: NavigationProp<any> }) {
   const [permission, requestPermission] = useCameraPermissions();
   const [facing, setFacing] = useState<CameraType>('back');
+  const [showCamera, setShowCamera] = useState(true);
+
+  // Kamera nur anzeigen, wenn der Screen fokussiert ist
+  useFocusEffect(
+    useCallback(() => {
+      setShowCamera(true);  // Screen fokussiert → Kamera an
+      return () => {
+        setShowCamera(false); // Screen verlassen → Kamera aus
+      };
+    }, [])
+  );
 
   if (!permission) {
-    // Camera permissions are still loading
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Prüfe Kamera-Erlaubnis...</Text>
@@ -18,7 +28,6 @@ function Mainpage({ navigation }: { navigation: NavigationProp<any> }) {
   }
 
   if (!permission.granted) {
-    // Camera permissions are not granted yet
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Keine Kamera-Erlaubnis! Bitte erlauben:</Text>
@@ -29,8 +38,8 @@ function Mainpage({ navigation }: { navigation: NavigationProp<any> }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <CameraView style={{ flex: 1 }} facing={facing} />
-      <View style={{ position: 'relative', justifyContent: 'center', alignItems: 'center', elevation: 2, paddingBottom: 20 }}>
+      {showCamera && <CameraView style={{ flex: 1 }} facing={facing} />}
+      <View style={{ position: 'absolute', bottom: 20, width: '100%', justifyContent: 'center', alignItems: 'center', elevation: 2 }}>
         <AppButton title="Edit NPC" onPress={() => navigation.navigate('EditNPC')} />
       </View>
     </View>
