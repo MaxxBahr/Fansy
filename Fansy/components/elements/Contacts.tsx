@@ -12,6 +12,7 @@ function Contact({name, email, phone}: {name: string, email: string, phone: stri
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <AppButton title="Call" onPress={() => console.log(`Calling ${name}...`)} />
                     <AppButton title="Message" onPress={() => console.log(`Messaging ${name}...`)} />
+                    <AppButton title="Request character" onPress={() => console.log(`Requesting specific character from ${name}...`)} />
                 </View>
             </View>
         </View>
