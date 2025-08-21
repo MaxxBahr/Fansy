@@ -2,8 +2,8 @@ const ButtonStyle = {
   AppButtonContainer: {
     backgroundColor: '#f194ff',
     borderRadius: 100,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+    padding: 10,
+    marginVertical: 10,
     alignItems: 'center',
     justifyContent: 'center',
   },

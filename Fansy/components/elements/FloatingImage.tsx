@@ -1,6 +1,7 @@
 import { useVideoPlayer, VideoView } from "expo-video";
 import React, { useEffect, useMemo, useState } from "react";
-import { Button, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import AppButton from "./EditButton";
 
 export default function FloatingImage() {
   const videos = useMemo(
@@ -37,7 +38,7 @@ export default function FloatingImage() {
           allowsFullscreen
           pointerEvents="none"
         />
-        <Button onPress={changePerson} title={"Next Person"} />
+        <AppButton title="Next Person" onPress={changePerson} />
       </View>
   );
 }
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    padding: 20,
   },
   video: {
     flex: 1,
