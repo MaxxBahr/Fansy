@@ -1,10 +1,11 @@
-import { API_KEY } from '@env';
 import axios from 'axios';
+import Constants from 'expo-constants';
 
+const apikey = Constants.expoConfig.extra.apiKey;
 const openAI = axios.create({
     baseURL: 'https://api.openai.com/v1',
     headers: {
-        'Authorization': `Bearer ${API_KEY}`,
+        'Authorization': `Bearer ${apikey}`,
         'Content-Type': 'application/json'
     }
 });
