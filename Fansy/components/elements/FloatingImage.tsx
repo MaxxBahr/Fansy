@@ -2,6 +2,7 @@ import { useVideoPlayer, VideoView } from "expo-video";
 import React, { useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import AppButton from "./EditButton";
+import { useTheme } from "../../styles/ButtonStyle";
 
 export default function FloatingImage() {
   const videos = useMemo(
@@ -13,6 +14,7 @@ export default function FloatingImage() {
   );
 
   const [videoIndex, setVideoIndex] = useState(0);
+  const theme = useTheme();
 
   const changePerson = () => {
     setVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
@@ -31,7 +33,7 @@ export default function FloatingImage() {
   }, [videoIndex]);
 
   return (
-      <View style={styles.contentContainer}>
+      <View style={[styles.contentContainer, { backgroundColor: theme.background }]}>
         <VideoView
           style={styles.video}
           player={player}

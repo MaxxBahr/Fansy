@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, TextInput, View, useColorScheme } from "react-native";
 import { generateText } from "../OpenAPIService";
 import AppButton from "./elements/EditButton";
+import { useTheme } from "../styles/ButtonStyle";
 
 function EditNPC() {
     const [prompt, setPrompt] = useState("");
     const [result, setResult] = useState("");
+    const theme = useTheme();
+    const colorScheme = useColorScheme();
 
     const presets = [
         "red hair",
@@ -26,24 +29,29 @@ function EditNPC() {
     }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Design Your Character</Text>
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.background }]}>
+      <Text style={[styles.title, { color: theme.text }]}>Design Your Character</Text>
       <View style={styles.inputContainer}>
-          <Text style={styles.presetButtonWrapper}>Choose Preset:</Text>
+          <Text style={[styles.presetButtonWrapper, { color: theme.text }]}>Choose Preset:</Text>
         <View style={styles.presetContainer}>
           {presets.map((preset, index) => (
             <AppButton key={index} title={preset} onPress={() => setPrompt((prev) => `${prev} ${preset}`)} />
           ))}
         </View>
         <TextInput
-          style={styles.input}
+          style={[styles.input, { 
+            borderColor: theme.border, 
+            backgroundColor: theme.card,
+            color: theme.text
+          }]}
           placeholder="Enter your prompt"
+          placeholderTextColor={theme.placeholder}
           value={prompt}
           onChangeText={setPrompt}
         />
         <AppButton title="Generate Text" onPress={handleGenerate} />
       </View>
-      {result && <Text style={styles.result}>{result}</Text>}
+      {result && <Text style={[styles.result, { color: theme.text }]}>{result}</Text>}
     </SafeAreaView>
   );
 };
@@ -58,10 +66,10 @@ const styles = StyleSheet.create({
         marginBottom: 24,
     },
     input: {
-        borderColor: '#ccc',
         borderWidth: 1,
         padding: 20,
         marginBottom: 8,
+        borderRadius: 8,
     },
     result: {
         marginTop: 24,

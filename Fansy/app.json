@@ -6,16 +6,20 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "fansy",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.Fansy"
+      "bundleIdentifier": "com.anonymous.Fansy",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to capture photos and videos for character creation.",
+        "NSMicrophoneUsageDescription": "This app may use the microphone for video recording."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#000000"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.anonymous.Fansy"
@@ -27,13 +31,19 @@
     },
     "plugins": [
       "expo-router",
+            [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Fansy to access your camera to capture photos and videos."
+        }
+      ],
       [
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#000000"
         }
       ],
       [
