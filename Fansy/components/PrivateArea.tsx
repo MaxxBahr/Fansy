@@ -1,9 +1,9 @@
 import { NavigationProp } from "@react-navigation/native";
 import React from "react";
-import { View, ScrollView, useColorScheme } from "react-native";
+import { ScrollView, View } from "react-native";
+import { useTheme } from "../styles/ButtonStyle";
 import Contact from "./elements/Contacts";
 import AppButton from "./elements/EditButton";
-import { useTheme } from "../styles/ButtonStyle";
 
 function PrivateArea({ navigation }: { navigation: NavigationProp<any> }) {
     const [contact, SetContact] = React.useState<any[]>([]);
@@ -11,12 +11,12 @@ function PrivateArea({ navigation }: { navigation: NavigationProp<any> }) {
 
     React.useEffect(() => {
         SetContact([
-            { name: "John Doe", email: "john.doe@example.com", phone: "123-456-7890" },
-            { name: "Jane Smith", email: "jane.smith@example.com", phone: "987-654-3210" },
-            { name: "Hans Meier", email: "hans.meier@example.com", phone: "456-789-0123" },
-            { name: "Peter Müller", email: "peter.mueller@example.com", phone: "321-654-0987" },
-            { name: "Maria Garcia", email: "maria.garcia@example.com", phone: "654-321-0987" },
-            { name: "Sabine", email: "sabine@example.com", phone: "543-210-9876" },
+            { name: "@dancing_queen2024", email: "john.doe@example.com", phone: "123-456-7890" },
+            { name: "@gamer_vibes99", email: "jane.smith@example.com", phone: "987-654-3210" },
+            { name: "@coffee_addict_", email: "hans.meier@example.com", phone: "456-789-0123" },
+            { name: "@midnight_artist", email: "peter.mueller@example.com", phone: "321-654-0987" },
+            { name: "@sunshine_dreamer", email: "maria.garcia@example.com", phone: "654-321-0987" },
+            { name: "@neon_butterfly", email: "sabine@example.com", phone: "543-210-9876" },
         ])
     }, []);
 
@@ -28,7 +28,13 @@ function PrivateArea({ navigation }: { navigation: NavigationProp<any> }) {
                 showsVerticalScrollIndicator={true}
             >
                 {contact.map((c) => (
-                    <Contact key={c.name} name={c.name} email={c.email} phone={c.phone} />
+                    <Contact 
+                        key={c.name} 
+                        name={c.name} 
+                        email={c.email} 
+                        phone={c.phone} 
+                        onMessagePress={() => navigation.navigate('Chat', { contactName: c.name })}
+                    />
                 ))}
             </ScrollView>
             <View style={{ 
@@ -45,7 +51,7 @@ function PrivateArea({ navigation }: { navigation: NavigationProp<any> }) {
                 borderTopWidth: 1,
                 borderTopColor: theme.border
             }}>
-                <AppButton title="Edit NPC" onPress={() => navigation.navigate('EditNPC')} />
+                <AppButton title="Edit Avatar" onPress={() => navigation.navigate('EditNPC')} />
             </View>
         </View>
     )

@@ -118,7 +118,7 @@ function Mainpage({ navigation }: { navigation: NavigationProp<any> }) {
             setFacing(current => (current === 'back' ? 'front' : 'back'));
           }} 
         />
-        <AppButton title="Edit NPC" onPress={() => navigation.navigate('EditNPC')} />
+        <AppButton title="Edit Avatar" onPress={() => navigation.navigate('EditNPC')} />
       </View>
     </View>
   );

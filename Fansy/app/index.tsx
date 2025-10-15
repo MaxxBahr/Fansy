@@ -1,8 +1,10 @@
+import LocalRoulette from '@/components/elements/LocalRoulette';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import React from 'react';
-import { StyleSheet, StatusBar, useColorScheme } from 'react-native';
+import { StatusBar, StyleSheet, useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import EditNPC from '../components/EditNPC';
+import DummyChat from '../components/elements/DummyChat';
 import Mainpage from '../components/Main';
 import PrivateArea from '../components/PrivateArea';
 import RouletteArea from '../components/RouletteArea';
@@ -38,6 +40,8 @@ function App() {
         <Tab.Screen name="Main" component={Mainpage} />
         <Tab.Screen name="RouletteArea" component={RouletteArea} />
         <Tab.Screen name="EditNPC" component={EditNPC} />
+        <Tab.Screen name="LocalRoulette" component={LocalRoulette} />
+        <Tab.Screen name="Chat" component={DummyChat} />
       </Tab.Navigator>
     </GestureHandlerRootView>
   );
